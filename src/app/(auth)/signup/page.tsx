@@ -14,10 +14,12 @@ import {
   InputGroup,
   InputRightElement,
   Stack,
+  Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
 import Background from "../../../app-images/signup.jpg";
+import { colors } from "@/themes/colors";
 export default function SignupPage() {
   const [showPassword, setshowPassword] = useState(false);
   const passwordVisibility = () => setshowPassword(!showPassword);
@@ -58,7 +60,13 @@ export default function SignupPage() {
             // onSubmit={handleSubmit(submit_data)}
             >
               <Stack spacing={5}>
-                <Heading fontSize={"xl"}>Create an account</Heading>
+                <Text
+                  fontSize={"lg"}
+                  fontWeight={"bold"}
+                  color={colors.brand[800]}
+                >
+                  Create an account
+                </Text>
                 <FormControl
                 // isInvalid={!!errors.name}
                 >
@@ -133,7 +141,7 @@ export default function SignupPage() {
                 <Center>
                   <Box>
                     <Button variant={"primaryButtonShadow"} type="submit">
-                      Signup
+                      Register
                     </Button>
                   </Box>
                 </Center>

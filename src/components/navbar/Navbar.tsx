@@ -14,7 +14,6 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdLogIn } from "react-icons/io";
-import { RiShoppingCartFill } from "react-icons/ri";
 import NavbarItems from "./NavbarItems";
 import Logo from "../Logo";
 
@@ -69,10 +68,7 @@ function NavBar({ loggedIn }: { loggedIn: boolean }) {
             <Menu>
               <MenuButton
                 as={Button}
-                background={"transparent"}
-                _hover={{
-                  background: "transparent",
-                }}
+                variant={"transparentButton"}
                 color={colors.brand[1000]}
                 fontWeight={"bold"}
                 leftIcon={<HiOutlineUserCircle fontSize={"18px"} />}
