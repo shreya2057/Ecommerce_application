@@ -1,4 +1,5 @@
 export const colors = {
+  white: "#FFF",
   brand: {
     100: "#fffdf0",
     200: "#fff6f9",

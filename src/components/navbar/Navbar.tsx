@@ -16,11 +16,11 @@ import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdLogIn } from "react-icons/io";
 import { RiShoppingCartFill } from "react-icons/ri";
 import NavbarItems from "./NavbarItems";
+import Logo from "../Logo";
 
 function NavBar({ loggedIn }: { loggedIn: boolean }) {
   const username = "Harry Potter";
   const [menuDisplay, setMenuDisplay] = useState(false);
-  // const
   return (
     <Flex
       position={"fixed"}
@@ -29,7 +29,7 @@ function NavBar({ loggedIn }: { loggedIn: boolean }) {
       height={{ lg: "50px" }}
       minH={"50px"}
       zIndex={1}
-      background={"#FBD5EB"}
+      background={colors.brand[300]}
       alignItems={{ lg: "center" }}
       color={colors.brand[1000]}
       fontWeight={"bold"}
@@ -58,22 +58,7 @@ function NavBar({ loggedIn }: { loggedIn: boolean }) {
             <GiHamburgerMenu fontSize={"20px"} />
           </Box>
           <Link href={"/"}>
-            <Box display={"flex"} alignItems={"center"} gap={2}>
-              <Box
-                rounded={"full"}
-                borderWidth={1}
-                borderColor={colors.brand[1000]}
-                width={"fit-content"}
-                fontSize={18}
-                p={1}
-                display={{ base: "none", lg: "inline" }}
-              >
-                <RiShoppingCartFill />
-              </Box>
-              <Text fontSize={"lg"} fontWeight={"bold"} className="font">
-                Ecommerce App
-              </Text>
-            </Box>
+            <Logo color={colors.brand[200]} />
           </Link>
         </Box>
         <Box display={{ base: "none", lg: "flex" }}>
