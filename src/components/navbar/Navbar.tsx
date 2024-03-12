@@ -20,11 +20,14 @@ import NavbarItems from "./NavbarItems";
 function NavBar({ loggedIn }: { loggedIn: boolean }) {
   const username = "Harry Potter";
   const [menuDisplay, setMenuDisplay] = useState(false);
+  // const
   return (
     <Flex
+      position={"fixed"}
       direction={{ base: "column", lg: "row" }}
       width={"100%"}
       height={{ lg: "50px" }}
+      minH={"50px"}
       zIndex={1}
       background={"#FBD5EB"}
       alignItems={{ lg: "center" }}
@@ -42,7 +45,7 @@ function NavBar({ loggedIn }: { loggedIn: boolean }) {
         <Box
           display={"flex"}
           alignItems={"center"}
-          marginY={{ base: "8px", lg: 0 }}
+          marginY={{ base: 3, lg: 0 }}
           gap={{ base: 2, lg: 0 }}
         >
           <Box

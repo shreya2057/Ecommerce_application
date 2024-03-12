@@ -30,7 +30,11 @@ const routes: Array<routeType> = [
 
 export default function NavbarItems({ loggedIn }: { loggedIn: boolean }) {
   return (
-    <Box display={"flex"} width={{ base: "100%", lg: "unset" }}>
+    <Box
+      display={"flex"}
+      width={{ base: "100%", lg: "unset" }}
+      paddingBottom={{ base: 4, lg: 0 }}
+    >
       <UnorderedList
         listStyleType={"none"}
         margin={0}
