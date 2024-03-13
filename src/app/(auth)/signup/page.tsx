@@ -1,29 +1,44 @@
 "use client";
+import { Input } from "@/components/form/Input";
+import { useCreateAccount } from "@/services/auth/signup";
+import { colors } from "@/themes/colors";
+import { User } from "@/types/user";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Center,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
   IconButton,
-  Input,
-  InputGroup,
-  InputRightElement,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Background from "../../../app-images/signup.jpg";
-import { colors } from "@/themes/colors";
 export default function SignupPage() {
+  const defaultValues = {
+    name: "Default Name",
+    email: "",
+    password: "",
+    avatar: "https://picsum.photos/800",
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<User>({ defaultValues: defaultValues });
+
   const [showPassword, setshowPassword] = useState(false);
   const passwordVisibility = () => setshowPassword(!showPassword);
 
+  const { mutate: createUser, status } = useCreateAccount();
+
+  console.log(status);
+  const onSubmit = (data: User) => {
+    createUser(data);
+  };
   return (
     <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
       <Flex direction={"column"} flex={1} height={"100%"} gap={4}>
@@ -53,12 +68,10 @@ export default function SignupPage() {
             p={10}
             rounded={"md"}
             shadow={"md"}
-            backgroundColor={"#fff6f9"}
+            backgroundColor={colors.brand[200]}
             position={"absolute"}
           >
-            <form
-            // onSubmit={handleSubmit(submit_data)}
-            >
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={5}>
                 <Text
                   fontSize={"lg"}
@@ -67,80 +80,42 @@ export default function SignupPage() {
                 >
                   Create an account
                 </Text>
-                <FormControl
-                // isInvalid={!!errors.name}
-                >
-                  <FormLabel htmlFor="name">Email</FormLabel>
-                  <Input
-                    width={{ base: 220, md: 350 }}
-                    placeholder="Enter your email"
-                    bgColor={"white"}
-                    type="text"
-                    shadow={"md"}
-                    borderColor={"#ffd5e5"}
-                    // {
-                    //     ...register(
-                    //         "name",
-                    //         {
-                    //             required: "Task name cannot be empty"
-                    //         }
-                    //     )
-                    // }
-                  />
-                  <FormErrorMessage>
-                    {/* {errors.name?.message} */}
-                  </FormErrorMessage>
-                </FormControl>
-                <FormControl
-                // isInvalid={!!errors.start}
-                >
-                  <FormLabel htmlFor="name">Password</FormLabel>
-
-                  <InputGroup
-                    size="md"
-                    backgroundColor={"white"}
-                    display={"flex"}
-                    width={{ base: 220, md: 350 }}
-                  >
-                    <Input
-                      borderColor={"#ffd5e5"}
-                      placeholder="Enter your password"
-                      bgColor={"white"}
-                      type={showPassword ? "text" : "password"}
-                      shadow={"md"}
-                      // {
-                      //     ...register(
-                      //         "start",
-                      //         {
-                      //             required: "Start Date cannot be empty"
-                      //         }
-                      //     )
-                      // }
+                <Input
+                  hidden={false}
+                  type={"text"}
+                  name={"email"}
+                  label={"Email"}
+                  register={register}
+                  placeholder={"Enter your email"}
+                />
+                <Input
+                  name={"password"}
+                  label={"Password"}
+                  hidden={false}
+                  type={"password"}
+                  register={register}
+                  placeholder={"Enter your password"}
+                  showPassword={showPassword}
+                  rightElement={
+                    <IconButton
+                      variant={"transparentButton"}
+                      width={{ base: "1rem", md: "4.5rem" }}
+                      h={{ base: "0.75rem", md: "1.75rem" }}
+                      size="sm"
+                      aria-label="Password"
+                      icon={showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                      onClick={passwordVisibility}
                     />
-                    <InputRightElement
-                      width={{ base: "2rem", md: "4.5rem" }}
-                      alignSelf={"center"}
-                    >
-                      <IconButton
-                        variant={"transparentButton"}
-                        width={{ base: "1rem", md: "4.5rem" }}
-                        h={{ base: "0.75rem", md: "1.75rem" }}
-                        size="sm"
-                        aria-label="Password"
-                        backgroundColor={"inherit"}
-                        _hover={{ bgColor: "white" }}
-                        icon={showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                        onClick={passwordVisibility}
-                      />
-                    </InputRightElement>
-                  </InputGroup>
-                  <FormErrorMessage>
-                    {/* {errors.start?.message} */}
-                  </FormErrorMessage>
-                </FormControl>
+                  }
+                />
+
                 <Center>
                   <Box>
-                    <Button variant={"primaryButtonShadow"} type="submit">
+                    <Button
+                      variant={"primaryButtonShadow"}
+                      type="submit"
+                      isDisabled={status === "loading" ? true : false}
+                    >
                       Register
                     </Button>
                   </Box>

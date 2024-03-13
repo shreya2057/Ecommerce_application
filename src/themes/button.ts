@@ -21,6 +21,9 @@ const primaryButtonShadow = defineStyle({
   fontWeight: "bold",
   _hover: {
     background: colors.brand[500],
+    _disabled: {
+      background: colors.brand[400],
+    },
   },
 });
 
