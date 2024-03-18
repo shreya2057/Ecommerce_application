@@ -11,7 +11,7 @@ export default function Providers({ children }: { children: ReactNode }) {
       <ChakraProvider theme={theme}>
         <Flex width={"100dvw"} minHeight={"100vh"} flexDirection={"column"}>
           <NavBar loggedIn={true} />
-          <Flex flex={1} width={"100dvw"} minHeight={"100%"} marginTop={"50px"}>
+          <Flex flex={1} width={"100dvw"} minHeight={"100%"} marginTop={"52px"}>
             {children}
           </Flex>
         </Flex>

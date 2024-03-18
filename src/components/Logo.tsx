@@ -12,11 +12,15 @@ export default function Logo({ color }: { color: string }) {
         width={"fit-content"}
         fontSize={18}
         p={1}
-        display={{ base: "none", lg: "inline" }}
       >
         <RiShoppingCartFill />
       </Box>
-      <Text fontSize={"lg"} fontWeight={"bold"} className="font">
+      <Text
+        fontSize={"lg"}
+        fontWeight={"bold"}
+        className="font"
+        display={{ base: "none", lg: "inline" }}
+      >
         Ecommerce App
       </Text>
     </Box>

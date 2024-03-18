@@ -1,4 +1,10 @@
-import { FieldValues, Path, UseFormRegister, useForm } from "react-hook-form";
+import {
+  FieldErrors,
+  FieldValues,
+  Path,
+  UseFormRegister,
+  useForm,
+} from "react-hook-form";
 import FormWrapper from "./FormWrapper";
 import {
   Input as ChakraUiInput,
@@ -17,10 +23,11 @@ export function Input<TFieldValues extends FieldValues>({
   name,
   type,
   showPassword,
+  error,
   register,
 }: InputProps<TFieldValues>) {
   return (
-    <FormWrapper name={name} label={label}>
+    <FormWrapper name={name} label={label} error={error}>
       <InputGroup
         size="md"
         backgroundColor={"white"}
@@ -40,18 +47,21 @@ export function Input<TFieldValues extends FieldValues>({
             color: colors.brand[700],
             fontSize: "sm",
           }}
+          outline={0}
           _focusVisible={{
             borderColor: colors.brand[600],
           }}
           _hover={{
             borderColor: colors.brand[600],
           }}
+          errorBorderColor={colors.brand[700]}
           fontSize={"sm"}
           autoComplete="off"
           color={colors.brand[800]}
           width={{ base: 220, md: 350 }}
           placeholder={placeholder}
           bgColor={colors.white}
+          boxShadow={"none"}
           type={
             type === "password" ? (showPassword ? "text" : "password") : type
           }
@@ -85,4 +95,5 @@ export interface InputProps<TFieldValues extends FieldValues> {
   name: string;
   showPassword?: boolean;
   register: UseFormRegister<TFieldValues>;
+  error: FieldErrors;
 }

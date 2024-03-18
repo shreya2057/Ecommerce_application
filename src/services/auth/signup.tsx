@@ -21,16 +21,19 @@ export const useCreateAccount = () => {
     mutationFn: createAccount,
     onSuccess: () => {
       toast({
-        duration: 8000,
+        duration: 4000,
         isClosable: true,
         position: "bottom-right",
         render: () => <SuccessToast title={"Account has been created"} />,
       });
+
+      // TODO: After sign up success call login query
+
       router.push("/login");
     },
     onError: () => {
       toast({
-        duration: 8000,
+        duration: 4000,
         isClosable: true,
         position: "bottom-right",
         render: () => <ErrorToast title={"An error encountered"} />,

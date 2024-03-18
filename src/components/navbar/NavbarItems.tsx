@@ -1,3 +1,4 @@
+import { colors } from "@/themes/colors";
 import { Box, Flex, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -39,7 +40,7 @@ export default function NavbarItems({ loggedIn }: { loggedIn: boolean }) {
         listStyleType={"none"}
         margin={0}
         width={{ base: "100%", lg: "unset" }}
-        px={{ base: 12, lg: 0 }}
+        px={{ base: 5, lg: 0 }}
         backgroundColor={"transparent"}
         display={"flex"}
         flexDirection={{ base: "column", lg: "row" }}
@@ -58,12 +59,19 @@ export default function NavbarItems({ loggedIn }: { loggedIn: boolean }) {
                 : "flex"
             }
           >
-            <Link href={path}>
+            <Link href={path} style={{ width: "100%" }}>
               <Flex alignItems={"center"} gap={2} width={"100%"}>
-                <Flex display={{ base: "flex", lg: "none" }}>
-                  <CgArrowRight fontSize={"20px"} />
+                <Flex
+                  display={{ base: "flex", lg: "none" }}
+                  rounded={"full"}
+                  borderWidth={1}
+                  borderColor={colors.brand[1000]}
+                >
+                  <CgArrowRight fontSize={"12px"} />
                 </Flex>
-                {icons && <>{icons}</>}
+                {icons && (
+                  <Box display={{ base: "none", lg: "inline" }}>{icons}</Box>
+                )}
                 <Text>{page}</Text>
               </Flex>
             </Link>

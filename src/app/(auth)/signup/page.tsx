@@ -17,6 +17,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Background from "../../../app-images/signup.jpg";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema } from "@/schema/user";
 export default function SignupPage() {
   const defaultValues = {
     name: "Default Name",
@@ -28,14 +30,16 @@ export default function SignupPage() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({ defaultValues: defaultValues });
+  } = useForm<User>({
+    resolver: zodResolver(userSchema),
+    defaultValues: defaultValues,
+  });
 
   const [showPassword, setshowPassword] = useState(false);
   const passwordVisibility = () => setshowPassword(!showPassword);
 
   const { mutate: createUser, status } = useCreateAccount();
 
-  console.log(status);
   const onSubmit = (data: User) => {
     createUser(data);
   };
@@ -87,6 +91,7 @@ export default function SignupPage() {
                   label={"Email"}
                   register={register}
                   placeholder={"Enter your email"}
+                  error={errors}
                 />
                 <Input
                   name={"password"}
@@ -107,6 +112,7 @@ export default function SignupPage() {
                       onClick={passwordVisibility}
                     />
                   }
+                  error={errors}
                 />
 
                 <Center>
