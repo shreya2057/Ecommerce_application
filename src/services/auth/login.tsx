@@ -4,6 +4,7 @@ import ErrorToast from "@/components/toast/ErrorToast";
 import { User } from "@/types/user";
 import { useToast } from "@chakra-ui/react";
 import { useMutation } from "react-query";
+import { TokenService } from "../token";
 
 const loginUser = async (data: User) => {
   const response = await axiosInstance.post(APIRoute.login, data);
@@ -15,6 +16,9 @@ export const useLogin = () => {
   const toast = useToast();
   return useMutation({
     mutationFn: loginUser,
+    onSuccess(response) {
+      console.log(response);
+    },
     onError: () => {
       toast({
         duration: 4000,

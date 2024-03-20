@@ -21,10 +21,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/schema/user";
 export default function SignupPage() {
   const defaultValues = {
-    name: "Default Name",
+    // name: "Default Name",
     email: "",
     password: "",
-    avatar: "https://picsum.photos/800",
+    // avatar: "https://picsum.photos/800",
   };
   const {
     register,

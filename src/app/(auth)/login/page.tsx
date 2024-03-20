@@ -42,7 +42,7 @@ export default function Login() {
     login({ email: data.email, password: data.password });
   };
   return (
-    <Flex direction={"row"} minHeight={"100%"} width={"100%"}>
+    <Flex direction={"row"} minHeight={"100%"} maxH={"100dvh"} width={"100%"}>
       <Flex direction={"column"} flex={1} height={"100%"} gap={4}>
         <Flex
           width={"100%"}

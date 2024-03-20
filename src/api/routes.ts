@@ -1,4 +1,4 @@
 export const APIRoute = {
-  login: "/auth/login/",
-  signup: "/users/",
+  login: "/auth/login",
+  signup: "auth/signup/",
 };
