@@ -8,7 +8,6 @@ import { TokenService } from "../token";
 
 const loginUser = async (data: User) => {
   const response = await axiosInstance.post(APIRoute.login, data);
-  console.log(response);
   return response;
 };
 
@@ -17,7 +16,12 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: loginUser,
     onSuccess(response) {
-      console.log(response);
+      const { accessToken, refreshToken } = response?.data;
+      if (!accessToken || !refreshToken) {
+        return;
+      }
+      TokenService.setToken("access_token", accessToken);
+      TokenService.setToken("refresh_token", refreshToken);
     },
     onError: () => {
       toast({
