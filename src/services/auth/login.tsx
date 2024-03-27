@@ -5,6 +5,7 @@ import { User } from "@/types/user";
 import { useToast } from "@chakra-ui/react";
 import { useMutation } from "react-query";
 import { TokenService } from "../token";
+import { useRouter } from "next/navigation";
 
 const loginUser = async (data: User) => {
   const response = await axiosInstance.post(APIRoute.login, data);
@@ -12,6 +13,7 @@ const loginUser = async (data: User) => {
 };
 
 export const useLogin = () => {
+  const router = useRouter();
   const toast = useToast();
   return useMutation({
     mutationFn: loginUser,
@@ -22,6 +24,7 @@ export const useLogin = () => {
       }
       TokenService.setToken("access_token", accessToken);
       TokenService.setToken("refresh_token", refreshToken);
+      router.push("/");
     },
     onError: () => {
       toast({

@@ -1,12 +1,11 @@
+"use client";
 import { axiosInstance } from "@/api/axios";
 import { APIRoute } from "@/api/routes";
 import ErrorToast from "@/components/toast/ErrorToast";
-import SuccessToast from "@/components/toast/SuccessToast";
-import { colors } from "@/themes/colors";
+import { useUserStore } from "@/store/user";
 import { User } from "@/types/user";
-import { CheckCircleIcon } from "@chakra-ui/icons";
-import { Box, useToast } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { useToast } from "@chakra-ui/react";
+import Router, { useRouter } from "next/navigation";
 import { useMutation } from "react-query";
 
 const createAccount = async (data: User) => {
@@ -17,19 +16,14 @@ const createAccount = async (data: User) => {
 export const useCreateAccount = () => {
   const toast = useToast();
   const router = useRouter();
+  const { registeredUserDetails } = useUserStore();
   return useMutation({
     mutationFn: createAccount,
-    onSuccess: () => {
-      toast({
-        duration: 4000,
-        isClosable: true,
-        position: "bottom-right",
-        render: () => <SuccessToast title={"Account has been created"} />,
-      });
-
-      // TODO: After sign up success call login query
-
-      router.push("/login");
+    onSuccess: (response, variable) => {
+      if (response.status === 201) {
+        registeredUserDetails(variable);
+        router.push("/register_success");
+      }
     },
     onError: () => {
       toast({

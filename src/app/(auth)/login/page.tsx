@@ -8,6 +8,7 @@ import {
   Button,
   Center,
   Flex,
+  HStack,
   IconButton,
   Stack,
   Text,
@@ -15,10 +16,11 @@ import {
 import Image from "next/image";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import Background from "../../../app-images/signup.jpg";
+import Background from "../../../assets/backgrounds/auth.jpg";
 import { useLogin } from "@/services/auth/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/schema/user";
+import Link from "next/link";
 export default function Login() {
   const defaultValues = {
     name: "",
@@ -75,13 +77,25 @@ export default function Login() {
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={5}>
-                <Text
-                  fontSize={"lg"}
-                  fontWeight={"bold"}
-                  color={colors.brand[800]}
-                >
-                  Login to your account
-                </Text>
+                <HStack justifyContent={"space-between"}>
+                  <Text
+                    fontSize={"lg"}
+                    fontWeight={"bold"}
+                    color={colors.brand[800]}
+                  >
+                    Login to your account
+                  </Text>
+                  <Link href={"/signup"}>
+                    <Text
+                      as={"u"}
+                      fontSize={"sm"}
+                      fontWeight={"bold"}
+                      color={colors.brand[800]}
+                    >
+                      Signup
+                    </Text>
+                  </Link>
+                </HStack>
                 <Input
                   error={errors}
                   hidden={false}

@@ -1,10 +1,16 @@
-import Cookies from "js-cookie";
+import { getCookie, setCookie } from "cookies-next";
+
 const getToken = (key: string) => {
-  return Cookies.get(key);
+  return getCookie(key);
 };
 
 const setToken = (key: string, token: string) => {
-  return Cookies.set(key, token);
+  return setCookie(key, token);
 };
 
-export const TokenService = { getToken, setToken };
+const getTokenDetails = (key: string) => {
+  const token = getToken(key)?.split(".");
+  console.log(token);
+};
+
+export const TokenService = { getToken, setToken, getTokenDetails };

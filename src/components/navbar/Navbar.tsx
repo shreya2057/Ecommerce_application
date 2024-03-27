@@ -14,12 +14,13 @@ import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdLogIn } from "react-icons/io";
-import NavbarItems from "./NavbarItems";
 import Logo from "../Logo";
+import NavbarItems from "./NavbarItems";
 
 function NavBar({ loggedIn }: { loggedIn: boolean }) {
   const username = "Harry Potter";
   const [menuDisplay, setMenuDisplay] = useState(false);
+
   return (
     <Flex
       position={"fixed"}
@@ -28,7 +29,7 @@ function NavBar({ loggedIn }: { loggedIn: boolean }) {
       height={{ lg: "50px" }}
       minH={"52px"}
       zIndex={1}
-      background={colors.brand[300]}
+      background={colors.brand[200]}
       alignItems={{ lg: "center" }}
       color={colors.brand[1000]}
       fontWeight={"bold"}
