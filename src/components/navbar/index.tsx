@@ -1,21 +1,44 @@
 "use client";
 import { colors } from "@/themes/colors";
-import {
-  Box,
-  Button,
-  Collapse,
-  Flex,
-  Menu,
-  MenuButton,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Collapse, Flex, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import { IoMdLogIn } from "react-icons/io";
+import { MdAccountCircle } from "react-icons/md";
 import Logo from "../Logo";
+import DropDownMenu from "../dropdown";
 import NavbarItems from "./NavbarItems";
+import { IoSettings } from "react-icons/io5";
+import { PiSignOutFill } from "react-icons/pi";
+
+const itemsGroup1 = [
+  {
+    icon: <MdAccountCircle />,
+    text: "Profile",
+    onClickFunction: () => {
+      console.log("profile");
+    },
+  },
+  {
+    icon: <IoSettings />,
+    text: "Settings",
+    onClickFunction: () => {
+      console.log("settings");
+    },
+  },
+];
+
+const itemsGroup2 = [
+  {
+    icon: <PiSignOutFill />,
+    text: "SignOut",
+    onClickFunction: () => {
+      console.log("Signout");
+    },
+  },
+];
 
 function NavBar({ loggedIn }: { loggedIn: boolean }) {
   const username = "Harry Potter";
@@ -56,18 +79,12 @@ function NavBar({ loggedIn }: { loggedIn: boolean }) {
         </Box>
         <Box display={"flex"} alignItems={"center"} gap={{ base: 2, lg: 0 }}>
           {loggedIn && (
-            <Menu>
-              <MenuButton
-                as={Button}
-                variant={"transparentButton"}
-                color={colors.brand[1000]}
-                fontWeight={"bold"}
-                leftIcon={<HiOutlineUserCircle />}
-                fontSize={{ base: "2xl", md: "15px" }}
-              >
-                <Text display={{ base: "none", sm: "flex" }}>{username}</Text>
-              </MenuButton>
-            </Menu>
+            <DropDownMenu
+              buttonIcon={<HiOutlineUserCircle />}
+              buttonText={username}
+              itemGroup1={itemsGroup1}
+              itemGroup2={itemsGroup2}
+            />
           )}
           {!loggedIn && (
             <Link href={"/login"}>

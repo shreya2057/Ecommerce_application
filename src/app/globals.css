@@ -3,6 +3,16 @@
   src: url("../assets/fonts/Oxanium-Bold.ttf");
 }
 
+@font-face {
+  font-family: "InterMedium";
+  src: url("../assets/fonts/Inter-Medium.ttf");
+}
+
+@font-face {
+  font-family: "InterBold";
+  src: url("../assets/fonts/Inter-Medium.ttf");
+}
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;

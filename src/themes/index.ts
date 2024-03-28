@@ -6,6 +6,8 @@ import { buttonTheme } from "./button";
 const theme = extendTheme({
   fonts: {
     oxanium: "Oxanium",
+    interMedium: "InterMedium",
+    interBold: "InterBold",
   },
   components: {
     Button: buttonTheme,

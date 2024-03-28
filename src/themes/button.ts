@@ -13,6 +13,13 @@ const primaryButton = defineStyle({
   borderColor: colors.brand[700],
 });
 
+const primaryButtonOutlined = defineStyle({
+  ...baseStyles,
+  background: colors.brand[400],
+  border: "1px solid",
+  borderColor: colors.brand[900],
+});
+
 const primaryButtonShadow = defineStyle({
   ...baseStyles,
   background: colors.brand[400],
@@ -38,6 +45,7 @@ const transparentButton = defineStyle({
 export const buttonTheme = defineStyleConfig({
   variants: {
     primaryButton,
+    primaryButtonOutlined,
     primaryButtonShadow,
     transparentButton,
   },

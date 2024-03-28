@@ -1,5 +1,5 @@
 "use client";
-import NavBar from "@/components/navbar/Navbar";
+import NavBar from "@/components/navbar";
 import theme from "@/themes";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
